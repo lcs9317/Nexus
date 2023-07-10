@@ -41,6 +41,7 @@ if ($result->num_rows > 0) {
                 <td>' . $row['vat'] . '</td>
                 <td>' . $row['total_amount'] . '</td>
                 <td>' . $row['remarks'] . '</td>
+                <td><button onclick="openPopup_sell(\'' . $row['recordID'] . '\')">수정</button></td>
                 <td><button onclick=deleteRecord_sell(' . $row['registration_number'] . ')>삭제</button></td>
             </tr>';
     }
@@ -50,12 +51,10 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-
-
 <script>
-    function openPPopup(recordID) {
+    function openPopup_sell(recordID) {
         // 팝업 창 열기
-        window.open('update.php?recordID=' + encodeURIComponent(recordID), 'update_ppopup', 'width=500,height=400');
+        window.open('update.php?recordID=' + encodeURIComponent(recordID), 'update_sell_popup', 'width=500,height=400');
     }
 
     function updateRecord(event) {
@@ -66,10 +65,10 @@ $conn->close();
         var registration_number = document.getElementById('registration_number').value;
         var date = document.getElementById('date').value;
         var company = document.getElementById('company').value;
-        var employee = document.getElementById('employee').value;
+        var name = document.getElementById('name').value;
         var registration_number = document.getElementById('registration_number').value;
         var item = document.getElementById('item').value;
-        var quantity = document.getElementById('quantity').value;
+        var count = document.getElementById('count').value;
         var supply_amount = document.getElementById('supply_amount').value;
         var vat = document.getElementById('vat').value;
         var total_amount = document.getElementById('total_amount').value;
@@ -97,40 +96,16 @@ $conn->close();
         // 요청 전송
         xhr.send('recordID=' + encodeURIComponent(recordID) +
             '&registration_number=' + encodeURIComponent(registration_number) +
-            '$&employee=' + encodeURIComponent(employee) +
+            '&name=' + encodeURIComponent(name) +
             '&date=' + encodeURIComponent(date) +
             '&company=' + encodeURIComponent(company) +
             '&item=' + encodeURIComponent(item) +
-            '&quantity=' + encodeURIComponent(quantity) +
+            '&count=' + encodeURIComponent(count) +
             '&supply_amount=' + encodeURIComponent(supply_amount) +
             '&vat=' + encodeURIComponent(vat) +
             '&total_amount=' + encodeURIComponent(total_amount) +
             '&remarks=' + encodeURIComponent(remarks));
     }
 
-    function ddeleteRecord(recordID) {
-    // 새 XMLHttpRequest 객체 생성
-    var xhr = new XMLHttpRequest();
 
-    // 요청 준비
-    xhr.open('POST', 'delete2.php', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    // 콜백 함수 설정
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // 서버로부터의 응답 처리
-                alert(xhr.responseText);
-                // 페이지 새로고침
-                location.reload();
-            } else {
-                alert('서버 요청 실패: ' + xhr.status);
-            }
-        }
-    };
-
-    // 요청 전송
-    xhr.send('record_id=' + encodeURIComponent(recordID));
-}
 </script>

@@ -7,11 +7,13 @@
     <h1>수정</h1>
 
     <?php
-        // 데이터베이스 연결 설정
-        $servername = 'localhost';  // 데이터베이스 서버 주소
-        $username = 'root';  // 데이터베이스 사용자명
-        $password = '036974';  // 데이터베이스 비밀번호
-        $dbname = 'test1';  // 데이터베이스명
+    $config = require 'config.php';
+    $servername = $config['database']['servername'];
+    $username = $config['database']['username'];
+
+    $password = $config['database']['password'];
+    $dbname = $config['database']['dbname'];
+
 
         // 데이터베이스 연결 생성
         $conn = new mysqli($servername, $username, $password, $dbname);

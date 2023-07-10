@@ -1,9 +1,12 @@
 <?php
 // 데이터베이스 연결 설정
-$servername = 'localhost';  // 데이터베이스 서버 주소
-$username = 'root';  // 데이터베이스 사용자명
-$password = '036974';  // 데이터베이스 비밀번호
-$dbname = 'test1';  // 데이터베이스명
+$config = require 'config.php';
+$servername = $config['database']['servername'];
+$username = $config['database']['username'];
+
+$password = $config['database']['password'];
+$dbname = $config['database']['dbname'];
+
 
 // 데이터베이스 연결 생성
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,17 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recordID = $_POST['recordID'];
     $date = $_POST['date'];
     $company = $_POST['company'];
-    $employee = $_POST['employee'];
+    $name = $_POST['name'];
     $registration_number = $_POST['registration_number'];
     $item = $_POST['item'];
-    $quantity = $_POST['quantity'];
+    $count = $_POST['count'];
     $supply_amount = $_POST['supply_amount'];
     $vat = $_POST['vat'];
     $total_amount = $_POST['total_amount'];
     $remarks = $_POST['remarks'];
 
     // 유효성 검사
-    if (empty($recordID) || empty($date) || empty($company) || empty($employee) || empty($item) || empty($quantity) || empty($supply_amount) || empty($vat) || empty($total_amount) || empty($registration_number)) {
+    if (empty($recordID) || empty($date) || empty($company) || empty($name) || empty($item) || empty($count) || empty($supply_amount) || empty($vat) || empty($total_amount) || empty($registration_number)) {
         die('필수 필드를 모두 입력해야 합니다.'); // All fields must be filled in.
     }
 
@@ -36,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE sell_records SET
         date = '$date',
         company = '$company',
-        employee = '$employee',
+        name = '$name',
         item = '$item',
-        quantity = $quantity,
+        count = $count,
         supply_amount = $supply_amount,
         vat = $vat,
         total_amount = $total_amount,

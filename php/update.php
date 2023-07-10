@@ -8,10 +8,13 @@
 
     <?php
         // 데이터베이스 연결 설정
-        $servername = 'localhost';  // 데이터베이스 서버 주소
-        $username = 'root';  // 데이터베이스 사용자명
-        $password = '036974';  // 데이터베이스 비밀번호
-        $dbname = 'test1';  // 데이터베이스명
+    $config = require 'config.php';
+    $servername = $config['database']['servername'];
+    $username = $config['database']['username'];
+
+    $password = $config['database']['password'];
+    $dbname = $config['database']['dbname'];
+
 
         // 데이터베이스 연결 생성
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -41,8 +44,8 @@
                     <label for="company">상호:</label>
                     <input type="text" id="company" name="company" value="<?php echo $row['company']; ?>" required><br>
 
-                    <label for="employee">담당자:</label>
-                    <input type="text" id="employee" name="employee" value="<?php echo $row['employee']; ?>" required><br>
+                    <label for="name">담당자:</label>
+                    <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>" required><br>
 
                     <label for="registration_number">등록번호:</label>
                     <input type="text" id="registration_number" name="registration_number" value="<?php echo $row['registration_number']; ?>" required><br>
@@ -50,8 +53,8 @@
                     <label for="item">품목:</label>
                     <input type="text" id="item" name="item" value="<?php echo $row['item']; ?>" required><br>
                     
-                    <label for="quantity">수량:</label>
-                    <input type="text" id="quantity" name="quantity" value="<?php echo $row['quantity']; ?>" required><br>
+                    <label for="count">수량:</label>
+                    <input type="text" id="count" name="count" value="<?php echo $row['count']; ?>" required><br>
 
                     <label for="supply_amount">공급가액:</label>
                     <input type="text" id="supply_amount" name="supply_amount" value="<?php echo $row['supply_amount']; ?>" required><br>
