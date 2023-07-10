@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
                 <td>' . $row['company'] . '</td>
                 <td>' . $row['registration_number'] . '</td>
                 <td>' . $row['item'] . '</td>
-                <td>' . $row['supply_amount'] . '</td>
+                <td>' . $row['supply_sell_amount'] . '</td>
                 <td>' . $row['vat'] . '</td>
                 <td>' . $row['total_amount'] . '</td>
                 <td>' . $row['remarks'] . '</td>
@@ -69,7 +69,7 @@ $conn->close();
         var registration_number = document.getElementById('registration_number').value;
         var item = document.getElementById('item').value;
         var count = document.getElementById('count').value;
-        var supply_amount = document.getElementById('supply_amount').value;
+        var supply_amount = document.getElementById('supply_sell_amount').value;
         var vat = document.getElementById('vat').value;
         var total_amount = document.getElementById('total_amount').value;
         var remarks = document.getElementById('remarks').value;
@@ -101,7 +101,7 @@ $conn->close();
             '&company=' + encodeURIComponent(company) +
             '&item=' + encodeURIComponent(item) +
             '&count=' + encodeURIComponent(count) +
-            '&supply_amount=' + encodeURIComponent(supply_amount) +
+            '&supply_sell_amount=' + encodeURIComponent(supply_amount) +
             '&vat=' + encodeURIComponent(vat) +
             '&total_amount=' + encodeURIComponent(total_amount) +
             '&remarks=' + encodeURIComponent(remarks));

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $registration_number = $_POST['registration_number'];
     $item = $_POST['item'];
     $count = $_POST['count'];
-    $supply_amount = $_POST['supply_amount'];
+    $supply_sell_amount = $_POST['supply_sell_amount'];
     $vat = $_POST['vat'];
     $total_amount = $_POST['total_amount'];
     $remarks = $_POST['remarks'];
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         name = '$name',
         item = '$item',
         count = $count,
-        supply_amount = $supply_amount,
+        supply_sell_amount = $supply_sell_amount,
         vat = $vat,
         total_amount = $total_amount,
         remarks = '$remarks',

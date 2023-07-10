@@ -56,8 +56,8 @@
                     <label for="count">수량:</label>
                     <input type="text" id="count" name="count" value="<?php echo $row['count']; ?>" required><br>
 
-                    <label for="supply_amount">공급가액:</label>
-                    <input type="text" id="supply_amount" name="supply_amount" value="<?php echo $row['supply_amount']; ?>" required><br>
+                    <label for="supply_sell_amount">공급가액:</label>
+                    <input type="text" id="supply_sell_amount" name="supply_sell_amount" value="<?php echo $row['supply_sell_amount']; ?>" required><br>
 
                     <label for="vat">부가세:</label>
                     <input type="text" id="vat" name="vat" value="<?php echo $row['vat']; ?>" required><br>
@@ -93,12 +93,12 @@
             var recordID = document.getElementById('recordID').value;
             var registration_number = document.getElementById('registration_number').value;
     var date = document.getElementById('date').value;
-    var employee = document.getElementById('employee').value;
+    var name = document.getElementById('name').value;
     var company = document.getElementById('company').value;
     var registration_number = document.getElementById('registration_number').value;
     var item = document.getElementById('item').value;
-    var quantity = document.getElementById('quantity').value;
-    var supply_amount = document.getElementById('supply_amount').value;
+    var count = document.getElementById('count').value;
+    var supply_sell_amount = document.getElementById('supply_sell_amount').value;
     var vat = document.getElementById('vat').value;
     var total_amount = document.getElementById('total_amount').value;
     var remarks = document.getElementById('remarks').value;
@@ -125,12 +125,12 @@
     // 요청 전송
     xhr.send('recordID=' + encodeURIComponent(recordID) +
         '&date=' + encodeURIComponent(date) +
-        '$&employee=' + encodeURIComponent(employee) +
+        '&name=' + encodeURIComponent(name) +
         '&company=' + encodeURIComponent(company) +
         'registration_number=' + encodeURIComponent(company) +
         '&item=' + encodeURIComponent(item) +
-        '&quantity=' + encodeURIComponent(quantity) +
-        '&supply_amount=' + encodeURIComponent(supply_amount) +
+        '&count=' + encodeURIComponent(count) +
+        '&supply_sell_amount=' + encodeURIComponent(supply_sell_amount) +
         '&vat=' + encodeURIComponent(vat) +
         '&total_amount=' + encodeURIComponent(total_amount) +
         '&remarks=' + encodeURIComponent(remarks));

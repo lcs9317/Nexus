@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // SQL 쿼리 작성
-$sql = "SELECT r.date, r.company, r.item, r.supply_amount, s.supply_amount, r.count
+$sql = "SELECT r.date, r.company, r.item, r.supply_sell_amount, s.supply_amount, r.count
         FROM sell_records r
         JOIN records s ON r.date = s.date AND r.company = s.company AND r.item = s.item";
 
@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
         $date = $row['date'];
         $company = $row['company'];
         $item = $row['item'];
-        $supplyAmount = $row['supply_amount'];
+        $supplyAmount = $row['supply_sell_amount'];
         $count = $row['count'];
 
         $vat = $supplyAmount * 0.1;
