@@ -50,4 +50,83 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-<!-- 확인(완) -->
+<script>
+    function openPPopup(recordID) {
+        // 팝업 창 열기
+        window.open('update2.php?recordID=' + encodeURIComponent(recordID), 'update2_ppopup', 'width=500,height=400');
+    }
+
+    function updateRecord(event) {
+    event.preventDefault(); // 폼 제출 기본 동작 방지
+
+    // 폼 데이터 가져오기
+    var recordID = document.getElementById('recordID').value;
+    var registration_number = document.getElementById('registration').value;
+    var date = document.getElementById('date').value;
+    var company = document.getElementById('company').value;
+    var item = document.getElementById('item').value;
+    var supply_amount = document.getElementById('supply_amount').value;
+    var vat = document.getElementById('vat').value;
+    var total_amount = document.getElementById('total_amount').value;
+    var remarks = document.getElementById('remarks').value;
+
+    // 새 XMLHttpRequest 객체 생성
+    var xhr = new XMLHttpRequest();
+
+    // 요청 준비
+    xhr.open('POST', 'update2.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    // 콜백 함수 설정
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // 서버로부터의 응답 처리
+                alert(xhr.responseText);
+            } else {
+                alert('서버 요청 실패: ' + xhr.status); // Server request failed
+            }
+        }
+    };
+
+    
+
+
+    // 요청 전송
+    xhr.send('recordID=' + encodeURIComponent(recordID) +
+        '&registration_number=' + encodeURIComponent(registration_number) +
+        '&date=' + encodeURIComponent(date) +
+        '&company=' + encodeURIComponent(company) +
+        '&item=' + encodeURIComponent(item) +
+        '&supply_amount=' + encodeURIComponent(supply_amount) +
+        '&vat=' + encodeURIComponent(vat) +
+        '&total_amount=' + encodeURIComponent(total_amount) +
+        '&remarks=' + encodeURIComponent(remarks));
+}
+
+function deleteRecord(recordID) {
+    // 새 XMLHttpRequest 객체 생성
+    var xhr = new XMLHttpRequest();
+
+    // 요청 준비
+    xhr.open('POST', 'delete.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    // 콜백 함수 설정
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // 서버로부터의 응답 처리
+                alert(xhr.responseText);
+                // 페이지 새로고침
+                location.reload();
+            } else {
+                alert('서버 요청 실패: ' + xhr.status);
+            }
+        }
+    };
+
+    // 요청 전송
+    xhr.send('record_id=' + encodeURIComponent(recordID));
+}
+</script>
